@@ -1,9 +1,22 @@
 import styles from './styles/ImageGalleryItem.module.css'
+import { useMemo } from 'react';
 
 export const ImageGalleryItem = ( {changeObjectState, images} ) => {
-    return (
-        images.map((image, index) => {
-            return <li onClick={() => {changeObjectState(image)}} key={index} className={styles.ImageGalleryItem}><img className={styles.ImageGalleryItemImage} src={image.webformatURL}/></li>
-        })
-    )
+    const renderedImages = useMemo(() => {
+        return images.map((image) => (
+            <li
+                onClick={() => changeObjectState(image)}
+                key={image.id}
+                className={styles.ImageGalleryItem}
+            >
+                <img
+                    className={styles.ImageGalleryItemImage}
+                    src={image.webformatURL}
+                    alt={image.tags}
+                />
+            </li>
+        ));
+    }, [images, changeObjectState]);
+
+    return <>{renderedImages}</>;
 }

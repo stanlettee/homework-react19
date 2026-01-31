@@ -2,7 +2,7 @@ import styles from "./styles/Searchbar.module.css"
 import { Component } from "react"
 import { useState, useEffect } from "react"
 
-export const Searchbar = ({loadSet, search, handleInput}) => {
+export const Searchbar = ({search, handleInput}) => {
     const [input, setInput] = useState(search)
 
     const handleSubmit = (e) => {
