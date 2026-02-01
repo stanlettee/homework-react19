@@ -5,14 +5,16 @@ import { Button } from './components/Button'
 import { Modal } from './components/Modal'
 import { useState, useEffect, useCallback } from 'react';
 import * as React from "react";
-import { usePreferredLanguage } from "@uidotdev/usehooks";
+import { useDebounce } from "@uidotdev/usehooks";
 
 function App () {
-  const debouncedSearch = useDebounce(search, 500);
+  
   const [search, setSearch] = useState('')
   const [load, setLoad] = useState(8)
   const [modal, setModal] = useState(false)
   const [object, setObject] = useState({})
+
+  const debouncedSearch = useDebounce(search, 500);
 
 
   const handleInput = useCallback((input) => {
@@ -42,13 +44,12 @@ function App () {
   useEffect(() => {
     if (!debouncedSearch) return;
     console.log("Searching for:", debouncedSearch);
-    // Тут можно вызвать fetch к API для картинок
   }, [debouncedSearch]);
 
   return (
       <div className="container">
         <Searchbar className="Searchbar" loadSet={loadSet} search={search} handleInput={handleInput}/>
-        <ImageGallery   className="ImageGallery" search={debouncedSearch} loadSet={loadSet}  showModal={showModal} search={search} load={load}/>
+        <ImageGallery   className="ImageGallery" search={debouncedSearch} loadSet={loadSet}  showModal={showModal} load={load}/>
         <Button loadButton={loadButton}/>
         {/* <Loader /> */}
         <Modal object={object} modal={modal} closeModal={closeModal}/>
