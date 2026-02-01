@@ -1,8 +1,9 @@
 import styles from "./styles/Searchbar.module.css"
 import { Component } from "react"
 import { useState, useEffect } from "react"
+import React from "react";
 
-export const Searchbar = ({search, handleInput}) => {
+export const Searchbar = React.memo(({search, handleInput}) => {
     const [input, setInput] = useState(search)
 
     const handleSubmit = (e) => {
@@ -28,4 +29,4 @@ export const Searchbar = ({search, handleInput}) => {
                 </form>
             </header>
         )
-}
+})

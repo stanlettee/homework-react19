@@ -1,7 +1,8 @@
 import styles from './styles/ImageGalleryItem.module.css'
 import { useMemo } from 'react';
+import React from "react";
 
-export const ImageGalleryItem = ( {changeObjectState, images} ) => {
+export const ImageGalleryItem = React.memo(( {changeObjectState, images} ) => {
     const renderedImages = useMemo(() => {
         return images.map((image) => (
             <li
@@ -19,4 +20,4 @@ export const ImageGalleryItem = ( {changeObjectState, images} ) => {
     }, [images, changeObjectState]);
 
     return <>{renderedImages}</>;
-}
+})

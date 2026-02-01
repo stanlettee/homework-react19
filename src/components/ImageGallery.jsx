@@ -1,10 +1,11 @@
 import styles from './styles/ImageGallery.module.css';
 import { ImageGalleryItem } from './ImageGalleryItem';
 import axios from 'axios';
-import Loader from './Loader';
+import { Loader } from './Loader';
 import { useState, useEffect, useCallback } from 'react';
+import React from "react";
 
-export const ImageGallery = ({ showModal, search, load }) => {
+export const ImageGallery = React.memo(({ showModal, search, load }) => {
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -53,4 +54,4 @@ export const ImageGallery = ({ showModal, search, load }) => {
       {isLoading && <Loader />}
     </>
   );
-};
+});

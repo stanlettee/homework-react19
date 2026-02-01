@@ -1,6 +1,7 @@
 import styles from './styles/Modal.module.css'
+import React from "react";
 
-export const Modal = ({object, modal, closeModal}) => {
+export const Modal = React.memo(({object, modal, closeModal}) => {
     if (modal === true) {
         return (
             <div onClick={closeModal} className={styles.overlay}>
@@ -12,4 +13,4 @@ export const Modal = ({object, modal, closeModal}) => {
     }
 
 
-}
+})
